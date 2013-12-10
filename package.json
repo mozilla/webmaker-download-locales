@@ -1,0 +1,26 @@
+{
+    "name": "webmaker-download-locales",
+    "version": "0.0.1",
+    "description": "Download translation files from S3 bucket",
+    "main": "app.js",
+    "dependencies": {
+            "hyperquest": "0.1.8",
+            "xml2js": "0.4.0"
+        },
+    "repository": {
+            "type": "git",
+            "url": "git://github.com/alicoding/webmaker-download-locales.git"
+        },
+    "homepage": "https://github.com/alicoding/webmaker-download-localest",
+    "keywords": [
+          "download locales",
+          "l10n",
+          "S3"
+        ],
+    "author": {
+            "name": "Ali Al Dallal",
+            "email": "ali@alicoding.com",
+            "url": "http://alicoding.com"
+        },
+    "license": "MIT"
+}
