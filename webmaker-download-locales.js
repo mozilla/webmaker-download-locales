@@ -62,7 +62,7 @@ function request(url, callback) {
 request(xmlUrl, function (err, body) {
   body.ListBucketResult.Contents.forEach(function(data) {
     var filler = data.Key.split('/');
-    var absPath = path.join(__dirname, "locale", filler[1]);
+    var absPath = path.join(process.cwd(), "locale", filler[1]);
     var url = "http://"+body.ListBucketResult.Name+"/"+data.Key;
     request(url, function(err, strings) {
       writeFile(absPath, filler[2], JSON.stringify(strings, null, 2), function(err) {
