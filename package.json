@@ -2,7 +2,10 @@
   "name": "webmaker-download-locales",
   "version": "0.0.1",
   "description": "Download translation files from S3 bucket",
-  "main": "app.js",
+  "main": "webmaker-download-locales.js",
+  "bin": {
+    "transifex": "./bin/webmaker-download-locales.js"
+  },
   "preferGlobal": true,
   "dependencies": {
     "graceful-fs": "2.0.1",
