@@ -4,7 +4,7 @@
   "description": "Download translation files from S3 bucket",
   "main": "webmaker-download-locales.js",
   "bin": {
-    "transifex": "./bin/webmaker-download-locales.js"
+    "transifex": "./bin/index.js"
   },
   "preferGlobal": true,
   "dependencies": {
