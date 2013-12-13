@@ -60,7 +60,12 @@ function request(url, callback) {
 }
 
 request(xmlUrl, function (err, body) {
-  body.ListBucketResult.Contents.forEach(function(data) {
+  var contents = body.ListBucketResult.Contents || [];
+  if (!contents.length) {
+    console.error("Error: No contents returned from S3 - Please check your specified app name");
+    process.exit(1);
+  }
+  contents.forEach(function(data) {
     var filler = data.Key.split('/');
     var absPath = path.join(process.cwd(), "locale", filler[1]);
     var url = "http://"+body.ListBucketResult.Name+"/"+data.Key;
