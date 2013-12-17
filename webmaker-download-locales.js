@@ -4,8 +4,6 @@ var hyperquest = require('hyperquest'),
     mkdirp = require('mkdirp'),
     parser = require('xml2json');
 
-var app = process.argv[2];
-
 var xmlUrl = "http://transifex.webmaker.org.s3.amazonaws.com/?prefix=";
 
 function _parse_json(callback) {
