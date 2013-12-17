@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 var hyperquest = require('hyperquest'),
     path = require('path'),
     fs = require('graceful-fs'),
@@ -8,7 +6,7 @@ var hyperquest = require('hyperquest'),
 
 var app = process.argv[2];
 
-var xmlUrl = "http://transifex.webmaker.org.s3.amazonaws.com/?prefix=" + app;
+var xmlUrl = "http://transifex.webmaker.org.s3.amazonaws.com/?prefix=";
 
 function _parse_json(callback) {
   return function (err, res) {
@@ -59,22 +57,24 @@ function request(url, callback) {
   hyperquest.get(url, _parse_json(callback));
 }
 
-request(xmlUrl, function (err, body) {
-  var contents = body.ListBucketResult.Contents || [];
-  if (!contents.length) {
-    console.error("Error: No contents returned from S3 - Please check your specified app name");
-    process.exit(1);
-  }
-  contents.forEach(function(data) {
-    var filler = data.Key.split('/');
-    var absPath = path.join(process.cwd(), "locale", filler[1]);
-    var url = "http://"+body.ListBucketResult.Name+"/"+data.Key;
-    request(url, function(err, strings) {
-      writeFile(absPath, filler[2], JSON.stringify(strings, null, 2), function(err) {
-        if(err) {
-          console.error(err);
-        }
+module.exports = function(app) {
+  request(xmlUrl + app, function (err, body) {
+    var contents = body.ListBucketResult.Contents || [];
+    if (!contents.length) {
+      console.error("Error: No contents returned from S3 - Please check your specified app name");
+      process.exit(1);
+    }
+    contents.forEach(function(data) {
+      var filler = data.Key.split('/');
+      var absPath = path.join(process.cwd(), "locale", filler[1]);
+      var url = "http://"+body.ListBucketResult.Name+"/"+data.Key;
+      request(url, function(err, strings) {
+        writeFile(absPath, filler[2], JSON.stringify(strings, null, 2), function(err) {
+          if(err) {
+            console.error(err);
+          }
+        });
       });
     });
   });
-});
+};
