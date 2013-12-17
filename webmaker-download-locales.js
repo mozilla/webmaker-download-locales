@@ -1,10 +1,7 @@
 var hyperquest = require('hyperquest'),
     path = require('path'),
     fs = require('graceful-fs'),
-    mkdirp = require('mkdirp'),
-    parser = require('xml2json');
-
-var xmlUrl = "http://transifex.webmaker.org.s3.amazonaws.com/?prefix=";
+    mkdirp = require('mkdirp');
 
 var utils = require("./lib/utils");
 
@@ -27,8 +24,6 @@ function _parse_json(callback) {
         body = Buffer.concat(bodyParts, bytes).toString("utf8");
         if (res.headers['content-type'] === "application/json") {
           data = JSON.parse(body);
-        } else if (res.headers['content-type'] === "application/xml") {
-          data = utils.parse_xml_sync(body);
         } else {
           data = body;
         }
@@ -58,12 +53,13 @@ function request(url, callback) {
 }
 
 module.exports = function(app) {
-  request(xmlUrl + app, function (err, body) {
-    var contents = body.ListBucketResult.Contents || [];
-    if (!contents.length) {
-      console.error("Error: No contents returned from S3 - Please check your specified app name");
+  utils.list_files(app, function(err, contents) {
+    if (err) {
+      console.error(err);
       process.exit(1);
+      return;
     }
+
     contents.forEach(function(data) {
       var filler = data.Key.split('/');
       var absPath = path.join(process.cwd(), "locale", filler[1]);

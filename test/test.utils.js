@@ -12,4 +12,15 @@ describe("lib/utils.js", function() {
       ret.should.eql({ "hi": { "o": "a" }});
     });
   });
+
+  describe("list_files", function() {
+    it("should list files from S3", function(done) {
+      utils.list_files("goggles", function(err, files) {
+        should.exist(files);
+        files.should.be.an.Array;
+        files.length.should.be.above(70);
+        done();
+      });
+    });
+  });
 });
