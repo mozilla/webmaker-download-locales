@@ -6,6 +6,8 @@ var hyperquest = require('hyperquest'),
 
 var xmlUrl = "http://transifex.webmaker.org.s3.amazonaws.com/?prefix=";
 
+var utils = require("./lib/utils");
+
 function _parse_json(callback) {
   return function (err, res) {
     if (err) {
@@ -26,7 +28,7 @@ function _parse_json(callback) {
         if (res.headers['content-type'] === "application/json") {
           data = JSON.parse(body);
         } else if (res.headers['content-type'] === "application/xml") {
-          data = JSON.parse(parser.toJson(body));
+          data = utils.parse_xml_sync(body);
         } else {
           data = body;
         }
