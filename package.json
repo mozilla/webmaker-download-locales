@@ -8,7 +8,7 @@
   },
   "preferGlobal": true,
   "dependencies": {
-    "graceful-fs": "2.0.1",
+    "async": "0.2.9",
     "hyperquest": "0.1.8",
     "xml2json": "0.3.2",
     "mkdirp": "0.3.5"
@@ -36,6 +36,6 @@
     "should": "~2.1.1"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha --timeout 20000"
   }
 }

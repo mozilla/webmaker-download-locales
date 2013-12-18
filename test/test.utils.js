@@ -23,4 +23,19 @@ describe("lib/utils.js", function() {
       });
     });
   });
+
+  describe("stream_url_to_file", function() {
+    it("should stream a url to a file", function(done) {
+      var tmp = require("os").tmpdir() + "webmaker-download-locales/" + Math.random() * 10000;
+
+      utils.stream_url_to_file(
+        "http://transifex.webmaker.org.s3.amazonaws.com/goggles/en_CA/goggles.webmaker.org.json",
+        tmp,
+        function(err) {
+          should.not.exist(err);
+          done();
+        }
+      );
+    });
+  });
 });
