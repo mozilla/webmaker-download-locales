@@ -15,9 +15,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/alicoding/webmaker-download-locales.git"
+    "url": "git://github.com/mozilla/webmaker-download-locales.git"
   },
-  "homepage": "https://github.com/alicoding/webmaker-download-localest",
+  "homepage": "https://github.com/mozilla/webmaker-download-locales",
   "keywords": [
     "download locales",
     "l10n",
@@ -36,6 +36,6 @@
     "should": "~2.1.1"
   },
   "scripts": {
-    "test": "mocha --timeout 20000"
+    "test": "mocha --timeout 40000"
   }
 }

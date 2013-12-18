@@ -15,7 +15,7 @@ var apps = [
 
 describe("download-webmaker-locales", function() {
   apps.forEach(function(app) {
-    var tmp = require("os").tmpdir() + "webmaker-download-locales/" + app;
+    var tmp = require("os").tmpdir() + "/webmaker-download-locales/" + app;
 
     it("should download locales for " + app, function(done) {
       downloader(app, tmp, function(err) {
