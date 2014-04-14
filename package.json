@@ -1,6 +1,6 @@
 {
   "name": "webmaker-download-locales",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Download translation files from S3 bucket",
   "main": "webmaker-download-locales.js",
   "bin": {
