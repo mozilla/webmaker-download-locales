@@ -9,7 +9,7 @@ var abs_dir = path.join(process.cwd(), locale_dir);
 
 downloader(app, abs_dir, function(err) {
   if (err) {
-    console.err(err);
+    console.error(err);
     process.exit(1);
   }
 });
