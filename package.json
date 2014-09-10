@@ -1,6 +1,6 @@
 {
   "name": "webmaker-download-locales",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "description": "Download translation files from S3 bucket",
   "main": "webmaker-download-locales.js",
   "bin": {
@@ -12,8 +12,7 @@
     "hyperquest": "0.1.8",
     "minimist": "^1.1.0",
     "mkdirp": "0.3.5",
-    "xml2js": "~0.4.2",
-    "minimist": "^1.1.0"
+    "xml2js": "~0.4.2"
   },
   "repository": {
     "type": "git",
