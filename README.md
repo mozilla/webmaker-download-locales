@@ -31,5 +31,5 @@ This will download all the translation files from S3 bucket and write the files 
 If you want to specify a subset of languages, add the `-l` (or `--languages`) flag:
 
 ```bash
-webmaker-download-locales -l en-US,fr,bn-BD
+webmaker-download-locales -l en_US,fr,bn_BD
 ```
